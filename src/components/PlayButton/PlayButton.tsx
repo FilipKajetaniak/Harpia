@@ -4,7 +4,7 @@ import { notes as NotesBank } from "constants/notes";
 import Soundbank from "soundbank/soundbank";
 
 interface PlayButtonProps {
-  notes: Note[];
+  notes: any;
 }
 const sb = new Soundbank(NotesBank);
 
