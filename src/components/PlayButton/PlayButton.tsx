@@ -6,11 +6,18 @@ import Soundbank from "soundbank/soundbank";
 interface PlayButtonProps {
   notes: Note[];
 }
+const sb = new Soundbank(NotesBank);
 
 export const PlayButton: FC<PlayButtonProps> = ({ notes }) => {
-  const sb = new Soundbank(NotesBank);
   const play = (event: MouseEvent<HTMLDivElement>) => {
     sb.play(notes);
   };
-  return <div onClick={play}>{notes}</div>;
+  const stop = (event: MouseEvent<HTMLDivElement>) => {
+    sb.stop(notes);
+  };
+  return (
+    <div onMouseDown={play} onMouseUp={stop}>
+      {notes}
+    </div>
+  );
 };
