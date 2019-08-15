@@ -8,14 +8,18 @@ import Chord from "chords/Chord";
 interface PlayButtonProps {
   octave: string;
   step: number;
-  voicing: number[];
+  intervals: number[];
 }
 
 const soundbank = new Soundbank(NotesBank);
 const scale = new Scale(cMajor);
 
-export const PlayButton: FC<PlayButtonProps> = ({ octave, step, voicing }) => {
-  const chord = new Chord(step, octave, voicing);
+export const PlayButton: FC<PlayButtonProps> = ({
+  octave,
+  step,
+  intervals
+}) => {
+  const chord = new Chord(step, octave, intervals, cMajor.length);
   const notes = scale.getNotesFromSteps(chord.getSteps());
 
   const play = (event: MouseEvent<HTMLDivElement>) => {
