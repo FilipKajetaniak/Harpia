@@ -1,6 +1,7 @@
 import { Note } from "types/Note";
 import { notes as allNotes } from "constants/notes";
 import { DetailedNote } from "types/DetailedNote";
+import { OctavesWithSteps } from "types/OctavesWithSteps";
 
 const removeOctave = (note: string): string =>
   note.substring(0, note.length - 1);
@@ -17,20 +18,19 @@ export default class Scale {
   }
 
   private notes: DetailedNote[] = [];
-  private octave: number = 4;
 
-  readonly getNotesFromSteps = (steps: number[]): Note[] => {
+  readonly getNotesFromSteps = (octavesWithSteps: OctavesWithSteps): Note[] => {
     let chord: Note[] = [];
-    steps.forEach(step => {
-      const foundNote = this.notes.find(
-        note => note.step === step && note.octave === this.octave
-      );
-      if (foundNote) {
-        chord.push(foundNote.note);
-      }
-    });
+    for (let [octave, steps] of Object.entries(octavesWithSteps)) {
+      steps.forEach(step => {
+        const foundNote = this.notes.find(
+          note => note.step === step && note.octave === parseInt(octave, 10)
+        );
+        if (foundNote) {
+          chord.push(foundNote.note);
+        }
+      });
+    }
     return chord;
   };
-
-  readonly setOctave = (octave: number) => (this.octave = octave);
 }
