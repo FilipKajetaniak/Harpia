@@ -7,7 +7,7 @@ import Scale from "scales/Scale";
 
 const { cMajor } = scales;
 
-const newScale = new Scale(["c", "cs"]);
+const newScale = new Scale(cMajor);
 
 const App: React.FC = () => {
   console.log(newScale);

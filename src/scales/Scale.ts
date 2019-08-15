@@ -1,11 +1,6 @@
 import { Note } from "types/Note";
 import { notes as allNotes } from "constants/notes";
-
-interface detailedNotes {
-  note: Note;
-  octave: number;
-  step: number;
-}
+import { DetailedNote } from "types/DetailedNote";
 
 const removeOctave = (note: string): string =>
   note.substring(0, note.length - 1);
@@ -21,5 +16,5 @@ export default class Scale {
       }));
   }
 
-  private notes: detailedNotes[] = [];
+  private notes: DetailedNote[] = [];
 }
