@@ -1,23 +1,29 @@
 import React, { FC, MouseEvent } from "react";
-import { Note } from "types/Note";
 import { notes as NotesBank } from "constants/notes";
 import Soundbank from "soundbank/soundbank";
+import Scale from "scales/Scale";
+import { cMajor } from "constants/scales";
 
 interface PlayButtonProps {
   notes: any;
 }
-const sb = new Soundbank(NotesBank);
+
+const soundbank = new Soundbank(NotesBank);
+const scale = new Scale(cMajor);
+scale.setOctave(5);
 
 export const PlayButton: FC<PlayButtonProps> = ({ notes }) => {
+  const chord = scale.getNotesFromSteps(notes);
+
   const play = (event: MouseEvent<HTMLDivElement>) => {
-    sb.play(notes);
+    soundbank.play(chord);
   };
   const stop = (event: MouseEvent<HTMLDivElement>) => {
-    sb.stop(notes);
+    soundbank.stop(chord);
   };
   return (
     <div onMouseDown={play} onMouseUp={stop}>
-      {notes}
+      {chord}
     </div>
   );
 };

@@ -17,4 +17,20 @@ export default class Scale {
   }
 
   private notes: DetailedNote[] = [];
+  private octave: number = 4;
+
+  readonly getNotesFromSteps = (steps: number[]): Note[] => {
+    let chord: Note[] = [];
+    steps.forEach(step => {
+      const foundNote = this.notes.find(
+        note => note.step === step && note.octave === this.octave
+      );
+      if (foundNote) {
+        chord.push(foundNote.note);
+      }
+    });
+    return chord;
+  };
+
+  readonly setOctave = (octave: number) => (this.octave = octave);
 }
