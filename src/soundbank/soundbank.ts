@@ -23,7 +23,7 @@ export default class Soundbank {
     );
   }
 
-  notes: AudioNote;
+  private notes: AudioNote;
 
   readonly play = (notes: Note[]) => {
     notes.forEach(note => {
