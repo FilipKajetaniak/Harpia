@@ -4,7 +4,6 @@ import { notes as NotesBank } from "constants/notes";
 import Soundbank from "soundbank/soundbank";
 import Scale from "scales/Scale";
 import { eMinor } from "constants/scales";
-import Chord from "chords/Chord";
 
 import "./Chord.scss";
 
