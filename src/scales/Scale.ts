@@ -18,7 +18,6 @@ export default class Scale {
       }));
     // mapping octaves relative to root note rather than C as it is in soundbank
     this.notes = this.mapOctavesBasedOnScale(scale);
-    console.log(this.notes);
   }
 
   private notes: DetailedNote[] = [];
@@ -68,7 +67,6 @@ export default class Scale {
             offsetNote => removeOctave(offsetNote) === removeOctave(note.note)
           )
         ) {
-          console.log("FoundNote: ", note);
           return {
             ...note,
             octave: note.octave - 1

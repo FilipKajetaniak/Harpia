@@ -19,7 +19,7 @@ const scale = new Scale(eMinor);
 export const ChordComponent: FC<PlayButtonProps> = () => {
   const [step, setStep] = useState(1);
   const [octave, setOctave] = useState(4);
-  const [intervals, setIntervals] = useState([1]);
+  const [intervals, setIntervals] = useState([1, 3, 5, 11]);
   const notes = scale.getNotesFromSteps(octave, step, intervals);
 
   const play = (event: MouseEvent<HTMLDivElement>) => {
