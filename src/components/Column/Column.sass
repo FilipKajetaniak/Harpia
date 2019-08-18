@@ -12,6 +12,7 @@
         width: 100%
         top: 0
         left: 0
+        z-index: -1
         background: linear-gradient(white, transparent)
     &:after
         content: ''
@@ -20,14 +21,20 @@
         width: 100%
         bottom: 0
         left: 0
+        z-index: -1
         background: linear-gradient(transparent, white)
+    &:hover
+        .chord-slider
+            opacity: 1
 
 .chord-slider
+    opacity: 0
     height: 100%
     width: 2px
     position: absolute
     top: 0
     left: 50%
     margin-left: -1px
-    z-index: -1
+    z-index: -2
     background-color: $lighterpurple
+    transition: opacity 100ms ease-in

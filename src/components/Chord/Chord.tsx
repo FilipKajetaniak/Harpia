@@ -5,7 +5,7 @@ import Soundbank from "soundbank/soundbank";
 import Scale from "scales/Scale";
 import { cMajor } from "constants/scales";
 
-import "./Chord.scss";
+import "./Chord.sass";
 
 const soundbank = new Soundbank(NotesBank);
 const scale = new Scale(cMajor);
@@ -56,11 +56,11 @@ export const ChordComponent: FC = () => {
       <div onMouseDown={play} onMouseUp={stop} className="play-button">
         {step}
       </div>
-      <div className="up-button" onClick={increaseStep}>
-        +1
+      <div className="chord-button up-button" onClick={increaseStep}>
+        +
       </div>
-      <div className="down-button" onClick={decreaseStep}>
-        -1
+      <div className="chord-button down-button" onClick={decreaseStep}>
+        -
       </div>
     </div>
   );
