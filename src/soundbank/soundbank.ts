@@ -26,6 +26,7 @@ export default class Soundbank {
   private notes: AudioNote;
 
   readonly play = (notes: Note[]) => {
+    console.log(...notes);
     notes.forEach(note => {
       this.notes[note].play();
     });
