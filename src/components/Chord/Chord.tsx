@@ -22,15 +22,44 @@ export const ChordComponent: FC = () => {
   const stop = (event: MouseEvent<HTMLDivElement>) => {
     soundbank.stop(notes);
   };
+  const increaseOctave = () => {
+    if (octave === 6) {
+      return;
+    }
+    setOctave(octave + 1);
+  };
+
+  const decreaseOctave = () => {
+    if (octave === 3) {
+      return;
+    }
+    setOctave(octave - 1);
+  };
+  const increaseStep = (event: MouseEvent<HTMLDivElement>) => {
+    if (step === cMajor.length) {
+      increaseOctave();
+      setStep(1);
+    } else {
+      setStep(step + 1);
+    }
+  };
+  const decreaseStep = (event: MouseEvent<HTMLDivElement>) => {
+    if (step === 1) {
+      decreaseOctave();
+      setStep(cMajor.length);
+    } else {
+      setStep(step - 1);
+    }
+  };
   return (
     <div className="chord-wrapper">
       <div onMouseDown={play} onMouseUp={stop} className="play-button">
         {step}
       </div>
-      <div className="up-button" onClick={() => setStep(step + 1)}>
+      <div className="up-button" onClick={increaseStep}>
         +1
       </div>
-      <div className="down-button" onClick={() => setStep(step - 1)}>
+      <div className="down-button" onClick={decreaseStep}>
         -1
       </div>
     </div>
