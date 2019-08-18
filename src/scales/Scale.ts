@@ -38,7 +38,7 @@ export default class Scale {
       }
       return notes;
     }
-    return ["a3"];
+    return [];
   };
 
   private readonly mapOctavesBasedOnScale = (

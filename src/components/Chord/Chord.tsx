@@ -3,20 +3,14 @@ import React, { FC, MouseEvent, useState } from "react";
 import { notes as NotesBank } from "constants/notes";
 import Soundbank from "soundbank/soundbank";
 import Scale from "scales/Scale";
-import { eMinor } from "constants/scales";
+import { cMajor } from "constants/scales";
 
 import "./Chord.scss";
 
-interface PlayButtonProps {
-  octave: string;
-  step: number;
-  intervals: number[];
-}
-
 const soundbank = new Soundbank(NotesBank);
-const scale = new Scale(eMinor);
+const scale = new Scale(cMajor);
 
-export const ChordComponent: FC<PlayButtonProps> = () => {
+export const ChordComponent: FC = () => {
   const [step, setStep] = useState(1);
   const [octave, setOctave] = useState(4);
   const [intervals, setIntervals] = useState([1, 3, 5, 11]);
