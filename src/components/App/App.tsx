@@ -1,15 +1,14 @@
 import React from "react";
-import { ChordComponent as Chord } from "components/Chord/Chord";
+import { Grid } from "components/Grid/Grid";
+import { TopBar } from "components/TopBar/TopBar";
 
-import "./App.scss";
+import "sass/main.sass";
 
 const App: React.FC = () => {
   return (
     <>
-      <Chord />
-      <Chord />
-      <Chord />
-      <Chord />
+      <TopBar />
+      <Grid />
     </>
   );
 };
