@@ -1,19 +1,20 @@
 import React, { FC, MouseEvent, useState } from "react";
 
-import { notes as NotesBank } from "constants/notes";
 import Soundbank from "soundbank/soundbank";
 import Scale from "scales/Scale";
-import { cMajor } from "constants/scales";
+import scales from "constants/scales";
 
 import "./Chord.sass";
 
-const soundbank = new Soundbank(NotesBank);
-const scale = new Scale(cMajor);
+const selectedScale = scales.cMajor;
+const soundbank = new Soundbank();
+const scale = new Scale(selectedScale);
 
 export const ChordComponent: FC = () => {
   const [step, setStep] = useState(1);
+  const [offsetTop, setOffsetTop] = useState(50);
   const [octave, setOctave] = useState(4);
-  const [intervals, setIntervals] = useState([1, 3, 5, 11]);
+  const [intervals, setIntervals] = useState([1, 5, 9, 12]);
   const notes = scale.getNotesFromSteps(octave, step, intervals);
 
   const play = (event: MouseEvent<HTMLDivElement>) => {
@@ -36,7 +37,8 @@ export const ChordComponent: FC = () => {
     setOctave(octave - 1);
   };
   const increaseStep = (event: MouseEvent<HTMLDivElement>) => {
-    if (step === cMajor.length) {
+    setOffsetTop(offsetTop - 3.75);
+    if (step === selectedScale.length) {
       increaseOctave();
       setStep(1);
     } else {
@@ -44,15 +46,21 @@ export const ChordComponent: FC = () => {
     }
   };
   const decreaseStep = (event: MouseEvent<HTMLDivElement>) => {
+    setOffsetTop(offsetTop + 3.75);
     if (step === 1) {
       decreaseOctave();
-      setStep(cMajor.length);
+      setStep(selectedScale.length);
     } else {
       setStep(step - 1);
     }
   };
   return (
-    <div className="chord-wrapper">
+    <div
+      className="chord-wrapper"
+      style={{
+        top: `${offsetTop}%`
+      }}
+    >
       <div onMouseDown={play} onMouseUp={stop} className="play-button">
         {step}
       </div>
