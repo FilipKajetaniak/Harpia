@@ -32,6 +32,10 @@ const VOICINGS = [
   {
     intervals: [1, 5, 9, 14],
     name: "perfect fifths"
+  },
+  {
+    intervals: [1, 4, 7, 10],
+    name: "fourths"
   }
 ];
 
