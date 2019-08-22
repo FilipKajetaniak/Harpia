@@ -13,7 +13,7 @@
         top: 0
         left: 0
         z-index: -1
-        background: linear-gradient(white, transparent)
+        background: linear-gradient(white 20%, transparent)
     &:after
         content: ''
         position: absolute
@@ -24,7 +24,7 @@
         z-index: -1
         background: linear-gradient(transparent, white)
     &:hover
-        .chord-slider, .octave-markers
+        .chord-slider, .octave-markers, .change-voicing
             opacity: 1
         .halfstep-markers,
             opacity: 0.5
@@ -82,3 +82,16 @@
         width: 100%
         border-top: 1px solid $lighterpurple
         border-bottom: 1px solid $lighterpurple
+
+.change-voicing 
+    width: 100%
+    text-align: center
+    color: $lightpurple
+    cursor: pointer
+    position: absolute
+    top: 0
+    left: 0
+    opacity: 0
+    transition: opacity 100ms ease-in
+    &:hover
+        color: $purple
