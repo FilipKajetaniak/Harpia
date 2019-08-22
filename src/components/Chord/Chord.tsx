@@ -1,25 +1,32 @@
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, MouseEvent, useState, useRef } from "react";
 
-import { notes as NotesBank } from "constants/notes";
 import Soundbank from "soundbank/soundbank";
 import Scale from "scales/Scale";
-import { cMajor } from "constants/scales";
+import scales from "constants/scales";
 
 import "./Chord.sass";
 
-const soundbank = new Soundbank(NotesBank);
-const scale = new Scale(cMajor);
+interface ChordProps {
+  voicing: number[];
+}
 
-export const ChordComponent: FC = () => {
+const selectedScale = scales.eMinor;
+const soundbank = new Soundbank();
+const scale = new Scale(selectedScale);
+
+export const ChordComponent: FC<ChordProps> = ({ voicing }) => {
   const [step, setStep] = useState(1);
+  const [offsetTop, setOffsetTop] = useState(50);
   const [octave, setOctave] = useState(4);
-  const [intervals, setIntervals] = useState([1, 3, 5, 11]);
-  const notes = scale.getNotesFromSteps(octave, step, intervals);
+  const [isGrabbed, setIsGrabbed] = useState(false);
+  const notes = scale.getNotesFromSteps(octave, step, voicing);
 
-  const play = (event: MouseEvent<HTMLDivElement>) => {
+  const chordRef = useRef<HTMLInputElement>(null);
+
+  const play = (event?: MouseEvent<HTMLDivElement>) => {
     soundbank.play(notes);
   };
-  const stop = (event: MouseEvent<HTMLDivElement>) => {
+  const stop = (event?: MouseEvent<HTMLDivElement>) => {
     soundbank.stop(notes);
   };
   const increaseOctave = () => {
@@ -35,32 +42,58 @@ export const ChordComponent: FC = () => {
     }
     setOctave(octave - 1);
   };
-  const increaseStep = (event: MouseEvent<HTMLDivElement>) => {
-    if (step === cMajor.length) {
+  const increaseStep = () => {
+    setOffsetTop(offsetTop - 3.75);
+    if (step === selectedScale.length) {
       increaseOctave();
       setStep(1);
     } else {
       setStep(step + 1);
     }
   };
-  const decreaseStep = (event: MouseEvent<HTMLDivElement>) => {
+  const decreaseStep = () => {
+    setOffsetTop(offsetTop + 3.75);
     if (step === 1) {
       decreaseOctave();
-      setStep(cMajor.length);
+      setStep(selectedScale.length);
     } else {
       setStep(step - 1);
     }
   };
+  const startMoving = (event: MouseEvent<HTMLDivElement>) => {
+    setIsGrabbed(true);
+  };
+  const stopMoving = (event: MouseEvent<HTMLDivElement>) => {
+    setIsGrabbed(false);
+  };
+  const moving = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isGrabbed || !chordRef || !chordRef.current) {
+      return;
+    }
+    stop();
+    if (event.clientY < chordRef.current.offsetTop + 170) {
+      increaseStep();
+    }
+    if (event.clientY > chordRef.current.offsetTop + 220) {
+      decreaseStep();
+    }
+  };
+  const changeVoicing = (event: MouseEvent<HTMLDivElement>) => {
+    console.log("change voicing");
+  };
   return (
-    <div className="chord-wrapper">
+    <div
+      className={`chord-wrapper ${isGrabbed && "grabbed"}`}
+      style={{
+        top: `${offsetTop}%`
+      }}
+      ref={chordRef}
+      onMouseDown={startMoving}
+      onMouseUp={stopMoving}
+      onMouseMove={moving}
+    >
       <div onMouseDown={play} onMouseUp={stop} className="play-button">
         {step}
-      </div>
-      <div className="chord-button up-button" onClick={increaseStep}>
-        +
-      </div>
-      <div className="chord-button down-button" onClick={decreaseStep}>
-        -
       </div>
     </div>
   );

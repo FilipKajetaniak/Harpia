@@ -1,5 +1,6 @@
 import { Note } from "types/Note";
 import { AudioNote } from "types/AudioNote";
+import { notes } from "constants/notes";
 
 const createAudioElement = (note: Note) => {
   const audioElement = document.createElement("audio");
@@ -12,7 +13,7 @@ const createAudioElement = (note: Note) => {
 };
 
 export default class Soundbank {
-  constructor(notes: Note[]) {
+  constructor() {
     this.notes = notes.reduce(
       (object: any, note: Note) =>
         (object = {
