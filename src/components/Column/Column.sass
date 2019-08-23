@@ -5,24 +5,24 @@
     width: 100px
     float: left
     position: relative
-    &:before
-        content: ''
-        position: absolute
-        height: 200px
-        width: 100%
-        top: 0
-        left: 0
-        z-index: -1
-        background: linear-gradient(white 20%, transparent)
-    &:after
-        content: ''
-        position: absolute
-        height: 200px
-        width: 100%
-        bottom: 0
-        left: 0
-        z-index: -1
-        background: linear-gradient(transparent, white)
+    // &:before
+    //     content: ''
+    //     position: absolute
+    //     height: 200px
+    //     width: 100%
+    //     top: 0
+    //     left: 0
+    //     z-index: -1
+    //     background: linear-gradient(white 20%, transparent)
+    // &:after
+    //     content: ''
+    //     position: absolute
+    //     height: 200px
+    //     width: 100%
+    //     bottom: 0
+    //     left: 0
+    //     z-index: -1
+    //     background: linear-gradient(transparent, white)
     &:hover
         .chord-slider, .octave-markers, .change-voicing
             opacity: 1
@@ -30,7 +30,7 @@
             opacity: 0.5
 
 .chord-slider
-    opacity: 0
+    // opacity: 0
     height: 100%
     width: 2px
     position: absolute
@@ -45,7 +45,7 @@
     height: 100%
     width: 100%
     position: relative
-    opacity: 0
+    // opacity: 0
     transition: opacity 100ms ease-in
     div
         position: absolute
@@ -65,7 +65,7 @@
 .halfstep-markers
     height: 100%
     width: 100%
-    opacity: 0
+    // opacity: 0
     position: absolute
     top: 0
     left: 50%
@@ -91,7 +91,7 @@
     position: absolute
     top: 0
     left: 0
-    opacity: 0
+    // opacity: 0
     transition: opacity 100ms ease-in
     &:hover
         color: $purple
