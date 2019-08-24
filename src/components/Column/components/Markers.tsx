@@ -13,7 +13,13 @@ export const Markers: FC<MarkerProps> = ({ octaves, steps }) => {
   const createStepMarkers = () => {
     const elements: ReactElement[] = [];
     for (let i = 0; i < steps; i++) {
-      elements.push(<div key={i} className="step-marker" />);
+      elements.push(
+        <div
+          key={i}
+          className="step-marker"
+          style={{ height: `${Math.floor(10000 / steps) / 100}%` }}
+        />
+      );
     }
     return elements;
   };
@@ -22,7 +28,11 @@ export const Markers: FC<MarkerProps> = ({ octaves, steps }) => {
     const elements: ReactElement[] = [];
     for (let i = 0; i < octaves; i++) {
       elements.push(
-        <div key={i} className="octave-marker">
+        <div
+          key={i}
+          className="octave-marker"
+          style={{ height: `${Math.floor(10000 / octaves) / 100}%` }}
+        >
           {createStepMarkers()}
         </div>
       );

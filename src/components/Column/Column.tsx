@@ -6,7 +6,7 @@ import "./Column.sass";
 import { Markers } from "./components/Markers";
 
 const NUMBER_OF_OCTAVES = 4;
-const NUMBER_OF_STEPS = 8;
+const NUMBER_OF_STEPS = 7;
 
 const VOICINGS = [
   {
