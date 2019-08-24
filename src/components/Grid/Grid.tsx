@@ -9,7 +9,7 @@ interface Column {
 }
 
 export const Grid: FC = () => {
-  const [columns, setColumns] = useState<Column[]>([]);
+  const [columns, setColumns] = useState<Column[]>([{ id: "temp" }]);
   const addColumn = (event: MouseEvent<HTMLDivElement>) => {
     setColumns([...columns, { id: String(new Date().getTime()) }]);
   };
