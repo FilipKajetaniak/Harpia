@@ -6,7 +6,7 @@ import "./Column.sass";
 import { Markers } from "./components/Markers";
 
 const NUMBER_OF_OCTAVES = 4;
-const NUMBER_OF_STEPS = 7;
+const NUMBER_OF_STEPS = 8;
 
 const VOICINGS = [
   {
@@ -54,31 +54,10 @@ export const Column: FC = () => {
     }
     setIntervals(VOICINGS[indexOfCurrentVoicing + 1]);
   };
-
-  const createSteps = (octaves: number, steps: number) => {
-    const octaveMarkets = [];
-    const stepMarkers = [];
-    for (let i = 0; i > steps; i++) {
-      stepMarkers.push(
-        <div key={i} className="step-marker">
-          {i}
-        </div>
-      );
-    }
-    for (let i = 0; i < octaves; i++) {
-      octaveMarkets.push(
-        <div key={i} className="octave-marker">
-          {stepMarkers}
-        </div>
-      );
-    }
-    return <div className="column-markers">{octaveMarkets}</div>;
-  };
-
   return (
     <div className="column">
       <div className="chord-slider" />
-      <Markers octaves={4} steps={7} />
+      <Markers octaves={NUMBER_OF_OCTAVES} steps={NUMBER_OF_STEPS} />
       <Chord voicing={intervals.intervals} />
     </div>
   );

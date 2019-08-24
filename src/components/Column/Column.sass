@@ -41,48 +41,6 @@
     background-color: $lighterpurple
     transition: opacity 100ms ease-in
 
-.octave-markers
-    height: 100%
-    width: 100%
-    position: relative
-    // opacity: 0
-    transition: opacity 100ms ease-in
-    div
-        position: absolute
-        width: 20px
-        height: 2px
-        margin-left: -10px
-        background-color: $lighterpurple
-        border-radius: 2px
-        left: 50%
-        &.octave-5
-            top: 25%
-        &.octave-4
-            top: 50%
-        &.octave-3
-            top: 75%
-
-.halfstep-markers
-    height: 100%
-    width: 100%
-    // opacity: 0
-    position: absolute
-    top: 0
-    left: 50%
-    width: 10px
-    margin-left: -5px
-    transition: opacity 100ms ease-in
-    z-index: -3
-    div:nth-child(7n)
-        border-bottom: none
-    div:nth-child(7n)
-        border-top: none
-    .halfstep
-        height: 3.57%
-        width: 100%
-        border-top: 1px solid $lighterpurple
-        border-bottom: 1px solid $lighterpurple
-
 .change-voicing 
     width: 100%
     text-align: center

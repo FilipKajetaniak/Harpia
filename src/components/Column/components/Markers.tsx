@@ -1,5 +1,7 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
 
+import "./Markers.sass";
+
 interface MarkerProps {
   octaves: number;
   steps: number;
