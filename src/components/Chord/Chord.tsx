@@ -78,9 +78,6 @@ export const ChordComponent: FC<ChordProps> = ({ voicing }) => {
       decreaseStep();
     }
   };
-  const changeVoicing = (event: MouseEvent<HTMLDivElement>) => {
-    console.log("change voicing");
-  };
   return (
     <div
       className={`chord-wrapper ${isGrabbed && "grabbed"}`}

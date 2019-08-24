@@ -11,7 +11,6 @@ const NUMBER_OF_STEPS = 7;
 export const Column: FC = () => {
   return (
     <div className="column">
-      <div className="chord-slider" />
       <Markers octaves={NUMBER_OF_OCTAVES} steps={NUMBER_OF_STEPS} />
       <Chord voicing={[1, 3, 5]} />
     </div>

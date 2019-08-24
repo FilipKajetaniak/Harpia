@@ -44,5 +44,10 @@ export const Markers: FC<MarkerProps> = ({ octaves, steps }) => {
     createOctaveMarkers();
   }, ["octaves", "steps"]);
 
-  return <div className="column-markers">{markers}</div>;
+  return (
+    <>
+      <div className="chord-slider" />
+      <div className="column-markers">{markers}</div>
+    </>
+  );
 };
