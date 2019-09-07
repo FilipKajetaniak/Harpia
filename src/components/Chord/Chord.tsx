@@ -1,6 +1,6 @@
-import React, { FC, MouseEvent, useState, useRef } from "react";
+import React, { FC, MouseEvent, useState, useContext, useRef } from "react";
 
-import Soundbank from "soundbank/soundbank";
+import { soundbankContext } from "containers/SoundbankContext";
 import Scale from "scales/Scale";
 import scales from "constants/scales";
 
@@ -11,7 +11,6 @@ interface ChordProps {
 }
 
 const selectedScale = scales.eMinor;
-const soundbank = new Soundbank();
 const scale = new Scale(selectedScale);
 
 export const ChordComponent: FC<ChordProps> = ({ voicing }) => {
@@ -19,6 +18,7 @@ export const ChordComponent: FC<ChordProps> = ({ voicing }) => {
   const [offsetTop, setOffsetTop] = useState(50);
   const [octave, setOctave] = useState(4);
   const [isGrabbed, setIsGrabbed] = useState(false);
+  const soundbank = useContext(soundbankContext);
   const notes = scale.getNotesFromSteps(octave, step, voicing);
 
   const chordRef = useRef<HTMLInputElement>(null);
